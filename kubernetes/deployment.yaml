@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    run: tensorflow-image-recognition
+  name: tensorflow-image-recognition
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: tensorflow-image-recognition
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: tensorflow-image-recognition
+    spec:
+      containers:
+      - image: quay.io/fmoctezuma/go-tensorflow-image-recognition:latest
+        imagePullPolicy: Always
+        name: tensorflow-image-recognition
+        resources: {}

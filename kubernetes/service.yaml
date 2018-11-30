@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: tensorflow-image-recognition
+  name: tensorflow-image-recognition
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: tensorflow-image-recognition
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
